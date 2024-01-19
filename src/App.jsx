@@ -16,10 +16,14 @@ function App() {
       return;
     }
     // faire une requète pour récupérer les coordonnées
-    const results = await axios.get(NOMINATIM_URL, { params: { q: address, format: 'json' } });
+    const results = await axios.get(NOMINATIM_URL, { params: { 
+      q: address, 
+      format: 'json' 
+    } });
     if(!results.data.length >= 1) {
       return;
     }
+    // faire une requète pour recupérer la meteo
     const meteoResult = await axios.get(OWM_URL, { params: { 
       appid: API_KEY,
       lat: results.data[0].lat,
